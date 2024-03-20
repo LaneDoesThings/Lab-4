@@ -52,8 +52,7 @@ input:
     ldr r1, =charInput
     bl scanf
     cmp r0, #0
-    it eq
-    bl readError
+    ble readError
     ldr r1, =charInput
     ldr r4, [r1]
 
@@ -61,57 +60,53 @@ input:
 
     @The following check if the user imput a valid option and complete the task asked if valid
     cmp r4, #'N'
-    it eq
+    bne dime
     mov r1, #5
-    it eq
     mov r2, #1
-    it eq
     bleq addMoney
 
+dime:
     cmp r4, #'D'
-    it eq
+    bne quarter
     mov r1, #10
-    it eq
     mov r2, #1
-    it eq
     bl addMoney
 
+quarter:
     cmp r4, #'Q'
-    it eq
+    bne dollar
     mov r1, #25
-    it eq
     mov r2, #1
-    it eq
     bl addMoney
 
+dollar:
     cmp r4, #'B'
-    it eq
+    bne return
     mov r1, #100
-    it eq
     mov r2, #1
-    it eq
     bl addMoney
 
+return:
     cmp r4, #'X'
-    it eq
+    bne admin
     mov r2, #1
-    it eq
     bl returnMoney
 
+admin:
     cmp r4, #'L'
-    it eq
+    bne noadmin
     mov r2, #1
-    it eq
     bl admin
+noadmin:
 
     cmp r5, #55
-    it ge
+    bne nodrink
     bl drinkSelection
+nodrink:
 
     @A valid option was not entered
     cmp r2, #0
-    it eq
-    bl readError
+    ble readError
     b input
 
 
