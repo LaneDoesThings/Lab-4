@@ -157,24 +157,37 @@ drinkSelection:
     moveq r6, r0
 
     cmp r4, #'S'
+    it eq
     ldreq r1, =strSprite
+    it eq
     pusheq {r7}
+    it eq
     moveq r2, #1
+    it eq
     bleq buy
+    it eq
     moveq r7, r0
 
     cmp r4, #'P'
     ldreq r1, =strDrPepper
+    it eq
     pusheq {r8}
+    it eq
     moveq r2, #1
+    it eq
     bleq buy
+    it eq
     moveq r8, r0
 
     cmp r4, #'Z'
+    it eq
     ldreq r1, =strCokeZero
+    it eq
     pusheq {r9}
     moveq r2, #1
+    it eq
     bleq buy
+    it eq
     moveq r9, r0
 
     cmp r4, #'X'
