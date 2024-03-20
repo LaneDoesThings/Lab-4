@@ -113,7 +113,7 @@ nodrink:
     cmp r2, #0
     bne noerror2
     bl readError
-noerror2
+noerror2:
     b input
     pop {r2}
 
