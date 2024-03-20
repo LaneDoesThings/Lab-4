@@ -62,38 +62,56 @@ input:
 
     @The following check if the user imput a valid option and complete the task asked if valid
     cmp r4, #'N'
+    it eq
     moveq r1, #5
+    it eq
     moveq r2, #1
+    it eq
     bleq addMoney
 
     cmp r4, #'D'
+    it eq
     moveq r1, #10
+    it eq
     moveq r2, #1
+    it eq
     bleq addMoney
 
     cmp r4, #'Q'
+    it eq
     moveq r1, #25
+    it eq
     moveq r2, #1
+    it eq
     bleq addMoney
 
     cmp r4, #'B'
+    it eq
     moveq r1, #100
+    it eq
     moveq r2, #1
+    it eq
     bleq addMoney
 
     cmp r4, #'X'
+    it eq
     moveq r2, #1
+    it eq
     bleq returnMoney
 
     cmp r4, #'L'
+    it eq
     moveq r2, #1
+    it eq
     bleq admin
 
     cmp r5, #55
+    it eq
     blge drinkSelection
 
     @A valid option was not entered
     cmp r2, #0
+    it eq
     bleq readError
     b input
 
