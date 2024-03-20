@@ -159,8 +159,7 @@ drinkSelection:
     ldr r1, =charInput
     bl scanf
     cmp r0, #0
-    it eq
-    bl readError
+    ble readError
     ldr r1, =charInput
     ldr r4, [r1]
 
@@ -168,31 +167,25 @@ drinkSelection:
 
     @The following check if the user imput a valid option and complete the task asked if valid
     cmp r4, #'C'
-    it eq
+    bne sprite
     ldr r1, =strCoke
-    it eq
     push {r6}
-    it eq
     mov r2, #1
-    it eq
     bl buy
-    it eq
     mov r6, r0
 
+sprite:
     cmp r4, #'S'
-    it eq
+    bne pepper
     ldr r1, =strSprite
-    it eq
     push {r7}
-    it eq
     mov r2, #1
-    it eq
     bl buy
-    it eq
     mov r7, r0
 
+pepper:
     cmp r4, #'P'
-    it eq
+    bne zero
     ldr r1, =strDrPepper
     it eq
     push {r8}
@@ -203,18 +196,15 @@ drinkSelection:
     it eq
     mov r8, r0
 
+zero:
     cmp r4, #'Z'
-    bne yesbuy
+    bne nozero
     ldr r1, =strCokeZero
     push {r9}
-yesbuy:
-    bne nobuy
     mov r2, #1
     bl buy
-nobuy:
-    bne after3
     mov r9, r0
-after3:
+nozero:
 
     cmp r4, #'X'
     bne after2
