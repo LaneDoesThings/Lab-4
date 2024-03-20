@@ -204,34 +204,32 @@ drinkSelection:
     mov r8, r0
 
     cmp r4, #'Z'
-    it eq
+    bne buy
     ldr r1, =strCokeZero
-    it eq
     push {r9}
-    it eq
+buy:
+    bne nobuy
     mov r2, #1
-    it eq
     bl buy
-    it eq
+nobuy:
+    bne after3
     mov r9, r0
+after3:
 
     cmp r4, #'X'
-    it eq
+    bne after2
     mov r2, #1
-    it eq
-    bl returnMoney
+    ble returnMoney
+after1:
 
     @A valid option was not entered
     cmp r2, #0
-    it eq
-    bl readError
-    it eq
-    bl drinkSelection
+    ble readError
+    ble drinkSelection
 
     @A valid option was entered but the user still needs to be reprompted
     cmp r2, #2
-    it eq
-    bl drinkSelection
+    ble drinkSelection
 
 
     pop {r2, pc}
@@ -257,9 +255,9 @@ checkr8:
     add r0, #1
 checkr9:
     cmp r9, #0
-    bne after
+    bne after2
     add r0, #1
-after:
+after2:
 
     pop {pc}
 
