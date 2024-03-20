@@ -54,7 +54,9 @@ noexit:
     ldr r1, =charInput
     bl scanf
     cmp r0, #0
-    ble readError
+    bne noerror
+    bl readError
+noerror:
     ldr r1, =charInput
     ldr r4, [r1]
     
