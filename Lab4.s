@@ -13,12 +13,12 @@ gdb ./Lab4
 
 .global main
 
+@r2: Amount of Dr. Pepper
+@r3: Amount of Coke Zero
 @r4: The value the user input
 @r5: The total money input
 @r6: Amount of Coke
 @r7: Amount of Sprite
-@r8: Amount of Dr. Pepper
-@r9: Amount of Coke Zero
 
 
 main:
@@ -31,8 +31,8 @@ start:
     mov r5, #0
     mov r6, #2
     mov r7, #2
-    mov r8, #2
-    mov r9, #2
+    mov r2, #2
+    mov r3, #2
 
     @Welcome the user
     ldr r0, =strWelcomeMessage
@@ -55,7 +55,8 @@ input:
     ble readError
     ldr r1, =charInput
     ldr r4, [r1]
-
+    
+    push {r2}
     mov r2, #0 @used for checking valid input
 
     @The following check if the user imput a valid option and complete the task asked if valid
@@ -108,13 +109,13 @@ nodrink:
     cmp r2, #0
     ble readError
     b input
-
+    pop {r2}
 
 /*
 Shows the amount of drinks left
  */
 admin:
-    push {r2, lr}
+    push {r2, r3, lr}
 
     ldr r0, =strAmountLeft
     mov r1, r6
@@ -124,7 +125,7 @@ admin:
     bl printf
     add sp, sp, #4
 
-    pop {r2, pc}
+    pop {r2, r3, pc}
 
 
 /*
@@ -271,7 +272,6 @@ yes:
         ldr r0, =strOutOfInventory @Tell the user the drink is out of stock
         bl printf
         
-        pop {r2}
         mov r2, #2 @input reprompt code
         push {r2}
 
