@@ -46,6 +46,18 @@ input:
     cmp r0, #4
     beq exit
 
+    @Get the money input from the user
+    ldr r0, =strMoneyMessage
+    bl printf
+    ldr r0, =charInputMode
+    ldr r1, =charInput
+    bl scanf
+    cmp r0, #0
+    it eq
+    bleq readError
+    ldr r1, =charInput
+    ldr r4, [r1]
+
 /*
 Checks if the machine is empty
  */
@@ -69,6 +81,20 @@ checkEmpty:
     addeq r0, #1
 
     push {r1, r2}
+    bx lr
+
+/*
+Tell the user the input was not valid
+ */
+readError:
+
+    ldr r0, =strError
+    bl printf
+
+    ldr r0, =strInputMode
+    ldr r1, =strInputError
+    bl scanf
+
     bx lr
 
 /*
