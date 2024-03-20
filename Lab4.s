@@ -26,6 +26,7 @@ main:
     bx r0 
 
 .thumb
+.syntax unified
 start:
     @Set the initial value 
     movs r4, #0
