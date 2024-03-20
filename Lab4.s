@@ -255,7 +255,7 @@ checkEmpty:
     add r0, #1
     cmp r9, #0
     it eq
-    addeq r0, #1
+    add r0, #1
 
     pop {pc}
 
