@@ -58,6 +58,53 @@ input:
     ldr r1, =charInput
     ldr r4, [r1]
 
+    movs r2, #0 @used for checking valid input
+
+    @The following check if the user imput a valid option and complete the task asked if valid
+    cmp r4, #'N'
+    ittt eq
+    moveq r1, #5
+    moveq r2, #1
+    bleq addMoney
+
+    cmp r4, #'D'
+    ittt eq
+    moveq r1, #10
+    moveq r2, #1
+    bleq addMoney
+
+    cmp r4, #'Q'
+    ittt eq
+    moveq r1, #25
+    moveq r2, #1
+    bleq addMoney
+
+    cmp r4, #'B'
+    ittt eq
+    moveq r1, #100
+    moveq r2, #1
+    bleq addMoney
+
+    cmp r4, #'X'
+    itt eq
+    moveq r2, #1
+    bleq returnMoney
+
+    cmp r4, #'L'
+    itt eq
+    moveq r2, #1
+    bleq admin
+
+    cmp r5, #55
+    it ge
+    blge drinkSelection
+
+    @A valid option was not entered
+    cmp r2, #0
+    it eq
+    bleq readError
+    b input
+
 /*
 Checks if the machine is empty
  */
