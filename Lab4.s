@@ -204,10 +204,10 @@ drinkSelection:
     mov r8, r0
 
     cmp r4, #'Z'
-    bne buy
+    bne yesbuy
     ldr r1, =strCokeZero
     push {r9}
-buy:
+yesbuy:
     bne nobuy
     mov r2, #1
     bl buy
