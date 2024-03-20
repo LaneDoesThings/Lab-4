@@ -202,13 +202,17 @@ checkEmpty:
     mov r0, #0
 
     cmp r6, #0
-    addeq r0, #1
+    it eq
+    add r0, #1
     cmp r7, #0
-    addeq r0, #1
+    it eq
+    add r0, #1
     cmp r8, #0
-    addeq r0, #1
+    it eq
+    add r0, #1
     cmp r9, #0
-    addeq r0, #1
+    it eq
+    add r0, #1
 
     pop {pc}
 
