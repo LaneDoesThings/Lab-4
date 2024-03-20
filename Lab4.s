@@ -54,7 +54,7 @@ checkEmpty:
     pop {r1, r2}
     push {lr}
 
-    mov r0, #0
+    movs r0, #0
 
     cmp r6, #0
     it eq
