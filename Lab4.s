@@ -64,7 +64,7 @@ input:
     bne dime
     mov r1, #5
     mov r2, #1
-    bleq addMoney
+    ble addMoney
 
 dime:
     cmp r4, #'D'
@@ -82,12 +82,12 @@ quarter:
 
 dollar:
     cmp r4, #'B'
-    bne return
+    bne refund
     mov r1, #100
     mov r2, #1
     bl addMoney
 
-return:
+refund:
     cmp r4, #'X'
     bne password
     mov r2, #1
