@@ -68,7 +68,7 @@ noerror:
     bne dime
     mov r1, #5
     mov r2, #1
-    ble addMoney
+    bl addMoney
 
 dime:
     cmp r4, #'D'
@@ -160,7 +160,9 @@ drinkSelection:
     ldr r1, =charInput
     bl scanf
     cmp r0, #0
-    ble readError
+    bne noerror3
+    bl readError
+noerror3:
     ldr r1, =charInput
     ldr r4, [r1]
 
@@ -206,18 +208,21 @@ nozero:
     cmp r4, #'X'
     bne after2
     mov r2, #1
-    ble returnMoney
+    bl returnMoney
 after1:
 
     @A valid option was not entered
     cmp r2, #0
-    ble readError
-    ble drinkSelection
+    bne valid1
+    bl readError
+    bl drinkSelection
+valid1:
 
     @A valid option was entered but the user still needs to be reprompted
     cmp r2, #2
-    ble drinkSelection
-
+    bne valid2
+    bl drinkSelection
+valid2:
 
     pop {r2, pc}
 
@@ -307,7 +312,9 @@ confirmPurchase:
     ldr r1, =charInput
     bl scanf
     cmp r0, #0
-    ble readError
+    bne noerror4
+    bl readError
+noerror4:
     ldr r1, =charInput
     ldr r0, [r1]
     pop {r1, r3, pc}
