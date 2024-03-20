@@ -43,7 +43,7 @@ input:
     @Check if the machine is empty and if it is exit the program
     bl checkEmpty
     cmp r0, #4
-    bxeq exit
+    bxe exit
 
     @Get the money input from the user
     ldr r0, =strMoneyMessage
