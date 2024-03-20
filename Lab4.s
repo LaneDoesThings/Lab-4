@@ -47,20 +47,10 @@ input:
     beq exit
 
 /*
-Exit with code 0 (success)
- */
-exit:
-    ldr r0, =strEmpty
-    bl printf
-
-    mov r7, #0x01
-    mov r0, #0x00
-    svc 0
-
-/*
 Checks if the machine is empty
  */
 checkEmpty:
+
     pop {r1, r2}
     push {lr}
 
@@ -82,7 +72,17 @@ checkEmpty:
     push {r1, r2}
     pop {pc}
 
+/*
+Exit with code 0 (success)
+ */
+exit:
 
+    ldr r0, =strEmpty
+    bl printf
+
+    mov r7, #0x01
+    mov r0, #0x00
+    svc 0
 
 
 .data
