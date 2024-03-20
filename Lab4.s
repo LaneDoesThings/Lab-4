@@ -28,12 +28,12 @@ main:
 .thumb
 start:
     @Set the initial value 
-    mov r4, #0
-    mov r5, #0
-    mov r6, #2
-    mov r7, #2
-    mov r8, #2
-    mov r9, #2
+    movs r4, #0
+    movs r5, #0
+    movs r6, #2
+    movs r7, #2
+    movs r8, #2
+    movs r9, #2
 
     @Welcome the user
     ldr r0, =strWelcomeMessage
@@ -58,50 +58,50 @@ input:
     ldr r1, =charInput
     ldr r4, [r1]
 
-    mov r2, #0 @used for checking valid input
+    movs r2, #0 @used for checking valid input
 
     @The following check if the user imput a valid option and complete the task asked if valid
     cmp r4, #'N'
     it eq
-    mov r1, #5
+    movs r1, #5
     it eq
-    mov r2, #1
+    movs r2, #1
     it eq
     bleq addMoney
 
     cmp r4, #'D'
     it eq
-    mov r1, #10
+    movs r1, #10
     it eq
-    mov r2, #1
+    movs r2, #1
     it eq
     bl addMoney
 
     cmp r4, #'Q'
     it eq
-    mov r1, #25
+    movs r1, #25
     it eq
-    mov r2, #1
+    movs r2, #1
     it eq
     bl addMoney
 
     cmp r4, #'B'
     it eq
-    mov r1, #100
+    movs r1, #100
     it eq
-    mov r2, #1
+    movs r2, #1
     it eq
     bl addMoney
 
     cmp r4, #'X'
     it eq
-    mov r2, #1
+    movs r2, #1
     it eq
     bl returnMoney
 
     cmp r4, #'L'
     it eq
-    mov r2, #1
+    movs r2, #1
     it eq
     bl admin
 
@@ -123,9 +123,9 @@ admin:
     push {r2, lr}
 
     ldr r0, =strAmountLeft
-    mov r1, r6
-    mov r2, r7
-    mov r3, r8
+    movs r1, r6
+    movs r2, r7
+    movs r3, r8
     push {r9}
     bl printf
     add sp, sp, #4
@@ -141,7 +141,7 @@ addMoney:
     
     ldr r0, =strMoneyAdded
     add r5, r5, r1
-    mov r2, r5
+    movs r2, r5
     bl printf
 
     pop {r2, pc}
@@ -165,7 +165,7 @@ drinkSelection:
     ldr r1, =charInput
     ldr r4, [r1]
 
-    mov r2, #0 @used for checking valid input
+    movs r2, #0 @used for checking valid input
 
     @The following check if the user imput a valid option and complete the task asked if valid
     cmp r4, #'C'
@@ -174,11 +174,11 @@ drinkSelection:
     it eq
     push {r6}
     it eq
-    mov r2, #1
+    movs r2, #1
     it eq
     bl buy
     it eq
-    mov r6, r0
+    movs r6, r0
 
     cmp r4, #'S'
     it eq
@@ -186,11 +186,11 @@ drinkSelection:
     it eq
     push {r7}
     it eq
-    mov r2, #1
+    movs r2, #1
     it eq
     bl buy
     it eq
-    mov r7, r0
+    movs r7, r0
 
     cmp r4, #'P'
     it eq
@@ -198,11 +198,11 @@ drinkSelection:
     it eq
     push {r8}
     it eq
-    mov r2, #1
+    movs r2, #1
     it eq
     bl buy
     it eq
-    mov r8, r0
+    movs r8, r0
 
     cmp r4, #'Z'
     it eq
@@ -210,15 +210,15 @@ drinkSelection:
     it eq
     push {r9}
     it eq
-    mov r2, #1
+    movs r2, #1
     it eq
     bl buy
     it eq
-    mov r9, r0
+    movs r9, r0
 
     cmp r4, #'X'
     it eq
-    mov r2, #1
+    movs r2, #1
     it eq
     bl returnMoney
 
@@ -243,7 +243,7 @@ Checks if the machine is empty
 checkEmpty:
     push {lr}
 
-    mov r0, #0
+    movs r0, #0
 
     cmp r6, #0
     it eq
@@ -277,7 +277,7 @@ buy:
     bl confirmPurchase
     cmp r0, #'N'
     it eq
-    mov r0, r3
+    movs r0, r3
     beq return
     cmp r0, #'Y'
     beq purchase
@@ -289,15 +289,15 @@ buy:
         bl printf
         
         pop {r2}
-        mov r2, #2 @input reprompt code
+        movs r2, #2 @input reprompt code
         push {r2}
 
-        mov r0, #0
+        movs r0, #0
         b return
 
     purchase:
         @Remove 55 cents from the machine and return the rest
-        mov r2, #55
+        movs r2, #55
         sub r5, r5, r2
         bl completePurchase
         sub r0, r3, #1
@@ -332,9 +332,9 @@ completePurchase:
     push {r3, lr}
 
     ldr r0, =strPurchaseComplete
-    mov r2, r5
+    movs r2, r5
     bl printf
-    mov r5, #0
+    movs r5, #0
 
     pop {r3, pc}
 
@@ -346,9 +346,9 @@ returnMoney:
     push {r2, lr}
 
     ldr r0, =strChangeMessage
-    mov r1, r5
+    movs r1, r5
     bl printf
-    mov r5, #0
+    movs r5, #0
 
     pop {r2, pc}
 
@@ -374,8 +374,8 @@ exit:
     ldr r0, =strEmpty
     bl printf
 
-    mov r7, #0x01
-    mov r0, #0x00
+    movs r7, #0x01
+    movs r0, #0x00
     svc 0
 
 .data
