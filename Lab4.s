@@ -38,6 +38,49 @@ thumb:
     ldr r0, =strWelcomeMessage
     bl printf
 
+input:
+
+    @Check if the machine is empty and if it is exit the program
+    bl checkEmpty
+    cmp r0, #4
+    beq exit
+
+/*
+Exit with code 0 (success)
+ */
+exit:
+    ldr r0, =strEmpty
+    bl printf
+
+    mov r7, #0x01
+    mov r0, #0x00
+    svc 0
+
+/*
+Checks if the machine is empty
+ */
+checkEmpty:
+    pop {r1, r2}
+    push {lr}
+
+    mov r0, #0
+
+    cmp r6, #0
+    it eq
+    add r0, #1
+    cmp r7, #0
+    it eq
+    add r0, #1
+    cmp r1, #0
+    it eq
+    add r0, #1
+    cmp r2, #0
+    it eq
+    add r0, #1
+
+    push {r1, r2}
+    pop {pc}
+
 
 
 
