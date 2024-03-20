@@ -52,7 +52,6 @@ Checks if the machine is empty
 checkEmpty:
 
     pop {r1, r2}
-    push {lr}
 
     movs r0, #0
 
@@ -70,7 +69,7 @@ checkEmpty:
     addeq r0, #1
 
     push {r1, r2}
-    pop {pc}
+    bx lr
 
 /*
 Exit with code 0 (success)
