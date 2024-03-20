@@ -269,8 +269,7 @@ confirmPurchase:
     ldr r1, =charInput
     bl scanf
     cmp r0, #0
-    it eq
-    bl readError
+    bleq readError
     ldr r1, =charInput
     ldr r0, [r1]
     pop {r1, r3, pc}
