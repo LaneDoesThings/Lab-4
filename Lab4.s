@@ -277,7 +277,7 @@ buy:
     bl confirmPurchase
     cmp r0, #'N'
     it eq
-    mov r0, r3
+    moveq r0, r3
     beq return
     cmp r0, #'Y'
     beq purchase
