@@ -88,11 +88,11 @@ dollar:
 
 return:
     cmp r4, #'X'
-    bne admin
+    bne password
     mov r2, #1
     bl returnMoney
 
-admin:
+password:
     cmp r4, #'L'
     bne noadmin
     mov r2, #1
