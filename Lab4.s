@@ -187,13 +187,9 @@ pepper:
     cmp r4, #'P'
     bne zero
     ldr r1, =strDrPepper
-    it eq
     push {r8}
-    it eq
     mov r2, #1
-    it eq
     bl buy
-    it eq
     mov r8, r0
 
 zero:
