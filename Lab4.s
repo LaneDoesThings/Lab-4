@@ -115,17 +115,16 @@ nodrink:
 Shows the amount of drinks left
  */
 admin:
-    push {r2, r3, lr}
+    push {r2, lr}
 
     ldr r0, =strAmountLeft
     mov r1, r6
     mov r2, r7
-    mov r3, r8
-    push {r9}
+    push {r3}
     bl printf
     add sp, sp, #4
 
-    pop {r2, r3, pc}
+    pop {r2, pc}
 
 
 /*
@@ -183,19 +182,19 @@ pepper:
     cmp r4, #'P'
     bne zero
     ldr r1, =strDrPepper
-    push {r8}
+    push {r2}
     mov r2, #1
     bl buy
-    mov r8, r0
+    mov r2, r0
 
 zero:
     cmp r4, #'Z'
     bne nozero
     ldr r1, =strCokeZero
-    push {r9}
+    push {r3}
     mov r2, #1
     bl buy
-    mov r9, r0
+    mov r3, r0
 nozero:
 
     cmp r4, #'X'
