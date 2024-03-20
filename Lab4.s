@@ -178,16 +178,21 @@ drinkSelection:
     moveq r9, r0
 
     cmp r4, #'X'
+    it eq
     moveq r2, #1
+    it eq
     bleq returnMoney
 
     @A valid option was not entered
     cmp r2, #0
+    it eq
     bleq readError
+    it eq
     bleq drinkSelection
 
     @A valid option was entered but the user still needs to be reprompted
     cmp r2, #2
+    it eq
     bleq drinkSelection
 
 
