@@ -54,6 +54,7 @@ input:
     ldr r1, =charInput
     bl scanf
     cmp r0, #0
+    it eq
     bleq readError
     ldr r1, =charInput
     ldr r4, [r1]
@@ -106,7 +107,7 @@ input:
     bleq admin
 
     cmp r5, #55
-    it eq
+    it ge
     blge drinkSelection
 
     @A valid option was not entered
