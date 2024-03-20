@@ -44,7 +44,7 @@ input:
     bl checkEmpty
     cmp r0, #4
     bne noexit
-    bx exit
+    bl exit
 noexit:
 
     @Get the money input from the user
