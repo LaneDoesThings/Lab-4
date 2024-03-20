@@ -43,7 +43,7 @@ input:
     @Check if the machine is empty and if it is exit the program
     bl checkEmpty
     cmp r0, #4
-    beq exit
+    bxeq exit
 
     @Get the money input from the user
     ldr r0, =strMoneyMessage
@@ -337,7 +337,6 @@ returnMoney:
 /*
 Tell the user the input was not valid
  */
- .thumb_func
 readError:
     push {r2, lr}
 
