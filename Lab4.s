@@ -337,6 +337,7 @@ returnMoney:
 /*
 Tell the user the input was not valid
  */
+ .thumb_func
 readError:
     push {r2, lr}
 
