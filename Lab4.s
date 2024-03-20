@@ -275,9 +275,10 @@ buy:
     @Make the user confirm the purchase
     bl confirmPurchase
     cmp r0, #'N'
-    itt eq
+    bne yes
     mov r0, r3
     beq return
+yes:
     cmp r0, #'Y'
     beq purchase
 
