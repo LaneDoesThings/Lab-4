@@ -93,6 +93,7 @@ input:
     cmp r4, #'L'
     itt eq
     moveq r2, #1
+    pop {r3, r0}
     bleq admin
 
     cmp r5, #55
@@ -104,6 +105,52 @@ input:
     it eq
     bleq readError
     b input
+
+/*
+Shows the amount of drinks left
+ */
+admin:
+
+    push {r2, lr}
+
+    push {r0}
+    ldr r0, =strAmountLeft
+    mov r1, r6
+    mov r2, r7
+    bl printf
+    
+    pop {r0, r2, lr}
+    push {r3, r0}
+    push {r2, lr}
+    pop {r2, pc}
+
+/*
+Returns the users money if they cancel the purchase
+ */
+returnMoney:
+
+    push {r2, lr}
+
+    ldr r0, =strChangeMessage
+    mov r1, r5
+    bl printf
+    mov r5, #0
+
+    pop {r2, pc}
+
+/*
+Adds the money specified in r1 to the total
+ */
+addMoney:
+
+    push {r2, lr}
+    
+    ldr r0, =strMoneyAdded
+    add r5, r5, r1
+    mov r2, r5
+    bl printf
+
+    pop {r2, pc}
 
 /*
 Checks if the machine is empty
