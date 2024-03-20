@@ -225,18 +225,18 @@ checkEmpty:
     mov r0, #0
 
     cmp r6, #0
-    bne checkr7
+    bne checksprite
     add r0, #1
-checkr7:
+checksprite:
     cmp r7, #0
-    bne checkr8
+    bne checkpepper
     add r0, #1
-checkr8:
-    cmp r8, #0
-    bne checkr9
+checkpepper:
+    cmp r2, #0
+    bne checkzero
     add r0, #1
-checkr9:
-    cmp r9, #0
+checkzero:
+    cmp r3, #0
     bne after2
     add r0, #1
 after2:
