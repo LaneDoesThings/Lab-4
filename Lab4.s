@@ -245,17 +245,21 @@ checkEmpty:
     mov r0, #0
 
     cmp r6, #0
-    it eq
+    bne checkr7
     add r0, #1
+checkr7:
     cmp r7, #0
-    it eq
+    bne checkr8
     add r0, #1
+checkr8:
     cmp r8, #0
-    it eq
+    bne checkr9
     add r0, #1
+checkr9:
     cmp r9, #0
-    it eq
-    addeq r0, #1
+    bne after
+    add r0, #1
+after:
 
     pop {pc}
 
