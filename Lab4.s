@@ -26,7 +26,7 @@ main:
     bx r0 
 
 .thumb
-@.syntax unified
+.syntax unified
 start:
     @Set the initial value 
     mov r4, #0
@@ -233,7 +233,7 @@ buy:
     bl confirmPurchase
     cmp r0, #'N'
     it eq
-    mov r0, r3
+    moveq r0, r3
     beq return
     cmp r0, #'Y'
     beq purchase
