@@ -227,7 +227,8 @@ buy:
     @Make the user confirm the purchase
     bl confirmPurchase
     cmp r0, #'N'
-    moveq r0, r3
+    i eq
+    mov r0, r3
     beq return
     cmp r0, #'Y'
     beq purchase
@@ -269,7 +270,8 @@ confirmPurchase:
     ldr r1, =charInput
     bl scanf
     cmp r0, #0
-    bleq readError
+    i eq
+    bl readError
     ldr r1, =charInput
     ldr r0, [r1]
     pop {r1, r3, pc}
