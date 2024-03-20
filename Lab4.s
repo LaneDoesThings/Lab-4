@@ -54,7 +54,7 @@ input:
     bl scanf
     cmp r0, #0
     it eq
-    bleq readError
+    bl readError
     ldr r1, =charInput
     ldr r4, [r1]
 
@@ -63,56 +63,56 @@ input:
     @The following check if the user imput a valid option and complete the task asked if valid
     cmp r4, #'N'
     it eq
-    moveq r1, #5
+    mov r1, #5
     it eq
-    moveq r2, #1
+    mov r2, #1
     it eq
     bleq addMoney
 
     cmp r4, #'D'
     it eq
-    moveq r1, #10
+    mov r1, #10
     it eq
-    moveq r2, #1
+    mov r2, #1
     it eq
-    bleq addMoney
+    bl addMoney
 
     cmp r4, #'Q'
     it eq
-    moveq r1, #25
+    mov r1, #25
     it eq
-    moveq r2, #1
+    mov r2, #1
     it eq
-    bleq addMoney
+    bl addMoney
 
     cmp r4, #'B'
     it eq
-    moveq r1, #100
+    mov r1, #100
     it eq
-    moveq r2, #1
+    mov r2, #1
     it eq
-    bleq addMoney
+    bl addMoney
 
     cmp r4, #'X'
     it eq
-    moveq r2, #1
+    mov r2, #1
     it eq
-    bleq returnMoney
+    bl returnMoney
 
     cmp r4, #'L'
     it eq
-    moveq r2, #1
+    mov r2, #1
     it eq
-    bleq admin
+    bl admin
 
     cmp r5, #55
     it ge
-    blge drinkSelection
+    bl drinkSelection
 
     @A valid option was not entered
     cmp r2, #0
     it eq
-    bleq readError
+    bl readError
     b input
 
 
@@ -161,7 +161,7 @@ drinkSelection:
     bl scanf
     cmp r0, #0
     it eq
-    bleq readError
+    bl readError
     ldr r1, =charInput
     ldr r4, [r1]
 
@@ -170,69 +170,69 @@ drinkSelection:
     @The following check if the user imput a valid option and complete the task asked if valid
     cmp r4, #'C'
     it eq
-    ldreq r1, =strCoke
+    ldr r1, =strCoke
     it eq
-    pusheq {r6}
+    push {r6}
     it eq
-    moveq r2, #1
+    mov r2, #1
     it eq
-    bleq buy
+    bl buy
     it eq
-    moveq r6, r0
+    mov r6, r0
 
     cmp r4, #'S'
     it eq
-    ldreq r1, =strSprite
+    ldr r1, =strSprite
     it eq
-    pusheq {r7}
+    push {r7}
     it eq
-    moveq r2, #1
+    mov r2, #1
     it eq
-    bleq buy
+    bl buy
     it eq
-    moveq r7, r0
+    mov r7, r0
 
     cmp r4, #'P'
     it eq
-    ldreq r1, =strDrPepper
+    ldr r1, =strDrPepper
     it eq
-    pusheq {r8}
+    push {r8}
     it eq
-    moveq r2, #1
+    mov r2, #1
     it eq
-    bleq buy
+    bl buy
     it eq
-    moveq r8, r0
+    mov r8, r0
 
     cmp r4, #'Z'
     it eq
-    ldreq r1, =strCokeZero
+    ldr r1, =strCokeZero
     it eq
-    pusheq {r9}
+    push {r9}
     it eq
-    moveq r2, #1
+    mov r2, #1
     it eq
-    bleq buy
+    bl buy
     it eq
-    moveq r9, r0
+    mov r9, r0
 
     cmp r4, #'X'
     it eq
-    moveq r2, #1
+    mov r2, #1
     it eq
-    bleq returnMoney
+    bl returnMoney
 
     @A valid option was not entered
     cmp r2, #0
     it eq
-    bleq readError
+    bl readError
     it eq
-    bleq drinkSelection
+    bl drinkSelection
 
     @A valid option was entered but the user still needs to be reprompted
     cmp r2, #2
     it eq
-    bleq drinkSelection
+    bl drinkSelection
 
 
     pop {r2, pc}
@@ -247,16 +247,16 @@ checkEmpty:
 
     cmp r6, #0
     it eq
-    addeq r0, #1
+    add r0, #1
     cmp r7, #0
     it eq
-    addeq r0, #1
+    add r0, #1
     cmp r8, #0
     it eq
-    addeq r0, #1
+    add r0, #1
     cmp r9, #0
     it eq
-    addeq r0, #1
+    add r0, #1
 
     pop {pc}
 
@@ -277,7 +277,7 @@ buy:
     bl confirmPurchase
     cmp r0, #'N'
     it eq
-    moveq r0, r3
+    mov r0, r3
     beq return
     cmp r0, #'Y'
     beq purchase
