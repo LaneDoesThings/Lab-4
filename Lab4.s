@@ -24,6 +24,7 @@ main:
     adr r0, thumb + 1
     bx r0
     .thumb
+    .syntax unified
 thumb:
     @Set the initial values
     mov r4, #0
@@ -67,16 +68,16 @@ checkEmpty:
 
     cmp r6, #0
     it eq
-    adds r0, #1
+    add r0, #1
     cmp r7, #0
     it eq
-    adds r0, #1
+    add r0, #1
     cmp r1, #0
     it eq
-    adds r0, #1
+    add r0, #1
     cmp r2, #0
     it eq
-    adds r0, #1
+    add r0, #1
 
     push {r1, r2}
     pop {pc}
