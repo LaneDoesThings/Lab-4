@@ -277,7 +277,7 @@ buy:
     cmp r0, #'N'
     itt eq
     mov r0, r3
-    b return
+    beq return
     cmp r0, #'Y'
     beq purchase
 
