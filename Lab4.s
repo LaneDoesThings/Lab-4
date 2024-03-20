@@ -24,7 +24,6 @@ gdb ./Lab4
 main:
     adr r0, start + 1
     bx r0 
-
 .thumb
 start:
     @Set the initial value 
