@@ -54,7 +54,9 @@ noexit:
     ldr r1, =charInput
     bl scanf
     cmp r0, #0
-    ble readError
+    bne noerror
+    bl readError
+noerror:
     ldr r1, =charInput
     ldr r4, [r1]
     
@@ -109,7 +111,9 @@ nodrink:
 
     @A valid option was not entered
     cmp r2, #0
-    ble readError
+    bne noerror2
+    bl readError
+noerror2
     b input
     pop {r2}
 
