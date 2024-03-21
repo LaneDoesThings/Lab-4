@@ -91,9 +91,9 @@ input:
     bleq returnMoney
 
     cmp r4, #'L'
+    pop {r0, r1}
     itt eq
     moveq r2, #1
-    pop {r3, r0}
     bleq admin
 
     cmp r5, #55
@@ -113,15 +113,13 @@ admin:
 
     push {r2, lr}
 
-    push {r0}
+    mov r3, r0
+    push {r1}
     ldr r0, =strAmountLeft
     mov r1, r6
     mov r2, r7
     bl printf
     
-    pop {r0, r2, lr}
-    push {r3, r0}
-    push {r2, lr}
     pop {r2, pc}
 
 /*
