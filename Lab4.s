@@ -92,15 +92,18 @@ input:
     bleq returnMoney
 
     cmp r4, #'L'
-    ittt eq
+    itt eq
     moveq r2, #1
     bleq admin
+    it eq
     pusheq {r0, r1}
 
     cmp r5, #55
-    itt ge
+    it ge
     blge drinkSelection
-    pushge {r0, r1}
+    cmp r3, #0
+    it eq
+    pusheq {r0, r1}
 
     @A valid option was not entered
     cmp r2, #0
@@ -193,6 +196,8 @@ drinkSelection:
     it eq
     bleq drinkSelection
 
+
+    movs r3, #0
     pop {r0, r1}
     pop {r2, pc}
 
