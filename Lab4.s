@@ -81,11 +81,9 @@ input:
     bleq addMoney
 
     cmp r4, #'B'
-    it eq
+    ittt eq
     moveq r1, #100
-    it eq
     moveq r2, #1
-    it eq
     bleq addMoney
 
     cmp r4, #'X'
@@ -129,7 +127,7 @@ drinkSelection:
     ldr r1, =charInput
     ldr r4, [r1]
 
-    mov r2, #0 @used for checking valid input
+    movs r2, #0 @used for checking valid input
 
     @The following check if the user imput a valid option and complete the task asked if valid
     cmp r4, #'C'
@@ -221,15 +219,15 @@ buy:
         bl printf
         
         pop {r2}
-        mov r2, #2 @input reprompt code
+        movs r2, #2 @input reprompt code
         push {r2}
 
-        mov r0, #0
+        movs r0, #0
         b return
 
     purchase:
         @Remove 55 cents from the machine and return the rest
-        mov r2, #55
+        movs r2, #55
         sub r5, r5, r2
         bl completePurchase
         sub r0, r3, #1
@@ -266,9 +264,9 @@ completePurchase:
     push {r3, lr}
 
     ldr r0, =strPurchaseComplete
-    mov r2, r5
+    movs r2, r5
     bl printf
-    mov r5, #0
+    movs r5, #0
 
     pop {r3, pc}
 
@@ -279,12 +277,12 @@ admin:
 
     push {r2, lr}
 
-    mov r3, r0
+    movs r3, r0
     push {r0}
     push {r1}
     ldr r0, =strAmountLeft
-    mov r1, r6
-    mov r2, r7
+    movs r1, r6
+    movs r2, r7
     bl printf
 
     pop {r0, r1}
@@ -299,9 +297,9 @@ returnMoney:
     push {r2, lr}
 
     ldr r0, =strChangeMessage
-    mov r1, r5
+    movs r1, r5
     bl printf
-    mov r5, #0
+    movs r5, #0
 
     pop {r2, pc}
 
@@ -314,7 +312,7 @@ addMoney:
     
     ldr r0, =strMoneyAdded
     add r5, r5, r1
-    mov r2, r5
+    movs r2, r5
     bl printf
 
     pop {r2, pc}
@@ -366,8 +364,8 @@ exit:
     ldr r0, =strEmpty
     bl printf
 
-    mov r7, #0x01
-    mov r0, #0x00
+    movs r7, #0x01
+    movs r0, #0x00
     svc 0
 
 
