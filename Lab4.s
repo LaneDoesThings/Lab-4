@@ -174,8 +174,9 @@ drinkSelection:
 
     @A valid option was not entered
     cmp r2, #0
-    itt eq
+    it eq
     bleq readError
+    it eq
     bleq drinkSelection
 
     @A valid option was entered but the user still needs to be reprompted
