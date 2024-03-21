@@ -253,7 +253,7 @@ Makes the user confirm they want to buy that drink
  */
 confirmPurchase:
 
-    push {lr}
+    push {r1, r3, lr}
 
     ldr r0, =strConfirmBuy
     bl printf
@@ -267,7 +267,7 @@ confirmPurchase:
     ldr r1, =charInput
     ldr r0, [r1]
 
-    pop {pc}
+    pop {r1, r3, pc}
 
 /*
 Tells the user they completed the purchase and how much money they got back
@@ -360,7 +360,7 @@ checkEmpty:
 Tell the user the input was not valid
  */
 readError:
-    push {r0, r1, lr}
+    push {lr}
 
     ldr r0, =strError
     bl printf
@@ -369,7 +369,7 @@ readError:
     ldr r1, =strInputError
     bl scanf
 
-    pop {r0, r1, pc}
+    pop {pc}
 
 /*
 Exit with code 0 (success)
