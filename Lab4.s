@@ -187,7 +187,7 @@ admin:
     mov r2, r7
     bl printf
 
-    add sp, #8
+    add sp, sp, #8
     pop {r2, pc}
 
 /*
