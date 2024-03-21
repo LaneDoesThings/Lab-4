@@ -130,19 +130,21 @@ drinkSelection:
 
     @The following check if the user imput a valid option and complete the task asked if valid
     cmp r4, #'C'
-    ittttt eq
+    itttt eq
     ldreq r1, =strCoke
     pusheq {r6}
     moveq r2, #1
     bleq buy
+    it eq
     moveq r6, r0
 
     cmp r4, #'S'
-    ittttt eq
+    itttt eq
     ldreq r1, =strSprite
     pusheq {r7}
     moveq r2, #1
     bleq buy
+    it eq
     moveq r7, r0
 
     cmp r4, #'P'
