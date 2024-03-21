@@ -99,7 +99,8 @@ input:
     pusheq {r0, r1}
 
     cmp r5, #55
-    it ge
+    itt ge
+    popge {r0, r1}
     blge drinkSelection
     cmp r3, #0
     it eq
@@ -115,7 +116,6 @@ input:
 If the user has entered more than 55 cents prompt them to buy a drink
 */
 drinkSelection:
-    pop {r0, r1}
     push {r2, lr}
     push {r0, r1}
 
