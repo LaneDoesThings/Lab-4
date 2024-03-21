@@ -187,7 +187,7 @@ admin:
     bl printf
 
     adr r2, sp + 16
-    str lr, sp, #12
+    adr lr, sp + 12
     
 
 /*
