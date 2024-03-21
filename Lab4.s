@@ -92,15 +92,15 @@ input:
     bleq returnMoney
 
     cmp r4, #'L'
-    itt eq
+    ittt eq
     moveq r2, #1
     bleq admin
-    push {r0, r1}
+    pusheq {r0, r1}
 
     cmp r5, #55
-    it ge
+    itt ge
     blge drinkSelection
-    push {r0, r1}
+    pushge {r0, r1}
 
     @A valid option was not entered
     cmp r2, #0
