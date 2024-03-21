@@ -31,7 +31,7 @@ thumb:
     movs r5, #0
     movs r6, #2
     movs r7, #2
-    movs r0, #1
+    movs r0, #2
     movs r1, #2
     push {r0, r1} 
 
