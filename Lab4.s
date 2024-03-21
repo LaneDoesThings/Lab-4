@@ -95,7 +95,6 @@ input:
     itt eq
     moveq r2, #1
     bleq admin
-    @sub sp, #8
 /* 
     cmp r5, #55
     it ge
@@ -187,7 +186,11 @@ admin:
     mov r2, r7
     bl printf
 
-    add sp, sp, #8
+
+    pop {r0, r1}
+    pop {r2, lr}
+    push {r0, r1}
+    push {r2, lr}
     pop {r2, pc}
 
 /*
