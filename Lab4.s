@@ -92,7 +92,6 @@ input:
     bleq returnMoney
 
     cmp r4, #'L'
-    pop {r0, r1}
     itt eq
     moveq r2, #1
     bleq admin
@@ -284,6 +283,7 @@ Shows the amount of drinks left
  */
 admin:
 
+    pop {r0, r1}
     push {r2, lr}
 
     movs r3, r0
