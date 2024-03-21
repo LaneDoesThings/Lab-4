@@ -95,7 +95,7 @@ input:
     itt eq
     moveq r2, #1
     bleq admin
-
+/* 
     cmp r5, #55
     it ge
     blge drinkSelection
@@ -106,6 +106,71 @@ input:
     bleq readError
     b input
 
+
+If the user has entered more than 55 cents prompt them to buy a drink
+
+drinkSelection:
+
+    push {r2, lr}
+
+    @Prompt the user to select a drink
+    ldr r0, =strDrinkMessage
+    bl printf
+    ldr r0, =charInputMode
+    ldr r1, =charInput
+    bl scanf
+    cmp r0, #0
+    bleq readError
+    ldr r1, =charInput
+    ldr r4, [r1]
+
+    mov r2, #0 @used for checking valid input
+
+    @The following check if the user imput a valid option and complete the task asked if valid
+    cmp r4, #'C'
+    ldreq r1, =strCoke
+    pusheq {r6}
+    moveq r2, #1
+    bleq buy
+    moveq r6, r0
+
+    cmp r4, #'S'
+    ldreq r1, =strSprite
+    pusheq {r7}
+    moveq r2, #1
+    bleq buy
+    moveq r7, r0
+
+    cmp r4, #'P'
+    ldreq r1, =strDrPepper
+    pusheq {r8}
+    moveq r2, #1
+    bleq buy
+    moveq r8, r0
+
+    cmp r4, #'Z'
+    ldreq r1, =strCokeZero
+    pusheq {r9}
+    moveq r2, #1
+    bleq buy
+    moveq r9, r0
+
+    cmp r4, #'X'
+    moveq r2, #1
+    bleq returnMoney
+
+    @A valid option was not entered
+    cmp r2, #0
+    bleq readError
+    bleq drinkSelection
+
+    @A valid option was entered but the user still needs to be reprompted
+    cmp r2, #2
+    bleq drinkSelection
+
+
+    pop {r2, pc}
+*/
 /*
 Shows the amount of drinks left
  */
