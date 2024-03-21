@@ -360,7 +360,6 @@ checkEmpty:
 Tell the user the input was not valid
  */
 readError:
-    push {lr}
 
     ldr r0, =strError
     bl printf
@@ -369,7 +368,7 @@ readError:
     ldr r1, =strInputError
     bl scanf
 
-    pop {pc}
+    bx lr
 
 /*
 Exit with code 0 (success)
