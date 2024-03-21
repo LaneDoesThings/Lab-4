@@ -160,6 +160,12 @@ drinkSelection:
     ldreq r1, =strDrPepper
     moveq r2, #1
     bleq buy
+    cmp r4, #'P'
+    itttt eq
+    pusheq {r0}
+    popeq {r0, r1}
+    pusheq {r0}
+    pusheq {r1}
 
     cmp r4, #'Z'
     ittt eq
