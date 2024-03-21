@@ -186,7 +186,7 @@ admin:
     mov r2, r7
     bl printf
 
-    str r2, sp, #16
+    adr r2, sp + 16
     str lr, sp, #12
     
 
