@@ -149,17 +149,19 @@ drinkSelection:
     moveq r7, r0
 
     cmp r4, #'P'
-    pop {r1, r3}
-    push {r3}
-    push {r1}
     ittt eq
+    popeq {r1, r3}
+    pusheq {r3}
+    pusheq {r1}
+    itttt eq
     ldreq r1, =strDrPepper
     moveq r2, #1
     bleq buy
-    push {r0}
-    pop {r1, r3}
-    push {r3}
-    push {r1}
+    pusheq {r0}
+    ittt
+    popeq {r1, r3}
+    pusheq {r3}
+    pusheq {r1}
 
     cmp r4, #'Z'
     ittt eq
