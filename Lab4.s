@@ -95,7 +95,7 @@ input:
     itt eq
     moveq r2, #1
     bleq admin
-    sub sp, #8
+    @sub sp, #8
 /* 
     cmp r5, #55
     it ge
