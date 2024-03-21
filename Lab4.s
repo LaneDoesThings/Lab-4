@@ -31,7 +31,7 @@ thumb:
     movs r5, #0
     movs r6, #2
     movs r7, #2
-    movs r0, #1
+    movs r0, #2
     movs r1, #2
     push {r0, r1} 
 
@@ -153,28 +153,28 @@ drinkSelection:
 
     cmp r4, #'P'
     ittt eq
-    popeq {r0, r1}
-    pusheq {r0}
-    pusheq {r1}
-    ittt eq
     ldreq r1, =strDrPepper
     moveq r2, #1
     bleq buy
     cmp r4, #'P'
-    itttt eq
+    it eq
     pusheq {r0}
+
+    cmp r4, #'Z'
+    ittt eq
     popeq {r0, r1}
     pusheq {r0}
     pusheq {r1}
-
-    cmp r4, #'Z'
     ittt eq
     ldreq r1, =strCokeZero
     moveq r2, #1
     bleq buy
     cmp r4, #'Z'
-    it eq
+    itttt eq
     pusheq {r0}
+    popeq {r0, r1}
+    pusheq {r0}
+    pusheq {r1}
 
     cmp r4, #'X'
     itt eq
