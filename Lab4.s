@@ -91,7 +91,7 @@ input:
     bleq returnMoney
 
     cmp r4, #'L'
-    pop {r0, r1}
+    @pop {r0, r1}
     itt eq
     moveq r2, #1
     bleq admin
