@@ -151,8 +151,9 @@ drinkSelection:
     moveq r7, r0
 
     cmp r4, #'P'
-    ittt eq
+    it eq
     popeq {r1, r3}
+    itt eq
     pusheq {r3}
     pusheq {r1}
     ittt eq
