@@ -96,7 +96,7 @@ input:
     moveq r2, #1
     bleq admin
     push {r0, r1}
-/* 
+
     cmp r5, #55
     it ge
     blge drinkSelection
@@ -107,9 +107,9 @@ input:
     bleq readError
     b input
 
-
+/*
 If the user has entered more than 55 cents prompt them to buy a drink
-
+*/
 drinkSelection:
 
     push {r2, lr}
@@ -121,6 +121,7 @@ drinkSelection:
     ldr r1, =charInput
     bl scanf
     cmp r0, #0
+    it eq
     bleq readError
     ldr r1, =charInput
     ldr r4, [r1]
@@ -129,6 +130,7 @@ drinkSelection:
 
     @The following check if the user imput a valid option and complete the task asked if valid
     cmp r4, #'C'
+    ittttt eq
     ldreq r1, =strCoke
     pusheq {r6}
     moveq r2, #1
@@ -136,6 +138,7 @@ drinkSelection:
     moveq r6, r0
 
     cmp r4, #'S'
+    ittttt eq
     ldreq r1, =strSprite
     pusheq {r7}
     moveq r2, #1
@@ -143,18 +146,24 @@ drinkSelection:
     moveq r7, r0
 
     cmp r4, #'P'
+    pop {r1, r3}
+    push {r3}
+    push {r1}
+    ittt eq
     ldreq r1, =strDrPepper
-    pusheq {r8}
     moveq r2, #1
     bleq buy
-    moveq r8, r0
+    push {r0}
+    pop {r1, r3}
+    push {r3}
+    push {r1}
 
     cmp r4, #'Z'
+    ittt eq
     ldreq r1, =strCokeZero
-    pusheq {r9}
     moveq r2, #1
     bleq buy
-    moveq r9, r0
+    push {r0}
 
     cmp r4, #'X'
     moveq r2, #1
@@ -171,7 +180,54 @@ drinkSelection:
 
 
     pop {r2, pc}
-*/
+
+/*
+Buys the drink the user specified and return the change if any
+Also checks if the drink is out if stock
+ */
+buy:
+    pop {r3}
+    push {r2, lr}
+
+    @The drink is out of stock
+    cmp r3, #0
+    it eq
+    beq outOfInventory
+
+    @Make the user confirm the purchase
+    bl confirmPurchase
+    cmp r0, #'N'
+    itt eq
+    moveq r0, r3
+    beq return
+    cmp r0, #'Y'
+    it eq
+    beq purchase
+
+    bl confirmPurchase @The user didn't input a 'Y' or 'N' so reprompt them
+
+    outOfInventory:
+        ldr r0, =strOutOfInventory @Tell the user the drink is out of stock
+        bl printf
+        
+        pop {r2}
+        mov r2, #2 @input reprompt code
+        push {r2}
+
+        mov r0, #0
+        b return
+
+    purchase:
+        @Remove 55 cents from the machine and return the rest
+        mov r2, #55
+        sub r5, r5, r2
+        bl completePurchase
+        sub r0, r3, #1
+
+    return:
+        pop {r2, pc}
+
+
 /*
 Shows the amount of drinks left
  */
