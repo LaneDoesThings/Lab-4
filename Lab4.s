@@ -179,8 +179,8 @@ admin:
     push {r2, lr}
 
     mov r3, r0
-    push {r1}
     push {r0}
+    push {r1}
     ldr r0, =strAmountLeft
     mov r1, r6
     mov r2, r7
