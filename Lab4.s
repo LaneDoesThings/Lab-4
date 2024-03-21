@@ -374,6 +374,10 @@ readError:
 
     ldr r0, =strError
     bl printf
+    
+    ldr r0, =strInputMode
+    ldr r1, =strInputError
+    bl scanf
 
     pop {r2, pc}
 
