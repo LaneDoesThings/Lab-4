@@ -287,7 +287,8 @@ admin:
     push {r2, lr}
 
     movs r3, r0
-    push {r0, r1}
+    push {r0}
+    push {r1}
     ldr r0, =strAmountLeft
     movs r1, r6
     movs r2, r7
