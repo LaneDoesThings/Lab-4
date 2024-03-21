@@ -198,8 +198,8 @@ drinkSelection:
     bleq drinkSelection
 
 
-    movs r3, #0
     pop {r0, r1}
+    movs r3, #0
     pop {r2, pc}
 
 /*
