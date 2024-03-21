@@ -101,6 +101,7 @@ input:
     cmp r5, #55
     it ge
     blge drinkSelection
+    push {r0, r1}
 
     @A valid option was not entered
     cmp r2, #0
@@ -193,7 +194,7 @@ drinkSelection:
     it eq
     bleq drinkSelection
 
-
+    pop {r0, r1}
     pop {r2, pc}
 
 /*
