@@ -114,7 +114,7 @@ If the user has entered more than 55 cents prompt them to buy a drink
 drinkSelection:
     pop {r0, r1}
     push {r2, lr}
-    push {r0 , r1}
+    push {r0, r1}
 
     @Prompt the user to select a drink
     ldr r0, =strDrinkMessage
