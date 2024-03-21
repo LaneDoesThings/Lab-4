@@ -168,7 +168,8 @@ drinkSelection:
     ldreq r1, =strCokeZero
     moveq r2, #1
     bleq buy
-    push {r0}
+    it eq
+    pusheq {r0}
 
     cmp r4, #'X'
     itt eq
