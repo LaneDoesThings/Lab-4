@@ -228,9 +228,9 @@ buy:
     purchase:
         @Remove 55 cents from the machine and return the rest
         movs r2, #55
-        sub r5, r5, r2
+        subs r5, r5, r2
         bl completePurchase
-        sub r0, r3, #1
+        subs r0, r3, #1
 
     return:
         pop {r2, pc}
