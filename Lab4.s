@@ -31,7 +31,7 @@ thumb:
     movs r5, #0
     movs r6, #2
     movs r7, #2
-    movs r0, #1
+    movs r0, #2
     movs r1, #2
     push {r0, r1} 
 
@@ -95,6 +95,7 @@ input:
     itt eq
     moveq r2, #1
     bleq admin
+    sub sp #8
 /* 
     cmp r5, #55
     it ge
@@ -185,7 +186,8 @@ admin:
     mov r1, r6
     mov r2, r7
     bl printf
-    
+
+    add sp, #8
     pop {r2, pc}
 
 /*
