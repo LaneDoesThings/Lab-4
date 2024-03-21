@@ -119,6 +119,7 @@ drinkSelection:
     push {r2, lr}
     push {r0, r1}
 
+drinkPrompt:
     @Prompt the user to select a drink
     ldr r0, =strDrinkMessage
     bl printf
@@ -190,16 +191,16 @@ drinkSelection:
     bleq readError
     cmp r2, #0
     it eq
-    bleq drinkSelection
+    bleq drinkPrompt
 
     @A valid option was entered but the user still needs to be reprompted
     cmp r2, #2
     it eq
-    bleq drinkSelection
+    beq drinkPrompt
 
 
-    pop {r0, r1}
     movs r3, #0
+    pop {r0, r1}
     pop {r2, pc}
 
 /*
