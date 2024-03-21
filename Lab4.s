@@ -154,8 +154,8 @@ drinkSelection:
     cmp r4, #'P'
     ittt eq
     popeq {r0, r1}
-    pusheq {r1}
     pusheq {r0}
+    pusheq {r1}
     ittt eq
     ldreq r1, =strDrPepper
     moveq r2, #1
