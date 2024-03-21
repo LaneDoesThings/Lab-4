@@ -311,8 +311,8 @@ addMoney:
     push {r2, lr}
     
     ldr r0, =strMoneyAdded
-    add r5, r5, r1
-    mov r2, r5
+    add r5, r1
+    movs r2, r5
     bl printf
 
     pop {r2, pc}
