@@ -186,8 +186,8 @@ admin:
     mov r2, r7
     bl printf
 
-    adr r2, sp + 16
-    adr lr, sp + 12
+    pop {r0, r1}
+    pop {r2, pc}
     
 
 /*
