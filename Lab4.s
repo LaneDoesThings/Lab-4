@@ -153,12 +153,12 @@ drinkSelection:
     popeq {r1, r3}
     pusheq {r3}
     pusheq {r1}
-    itttt eq
+    ittt eq
     ldreq r1, =strDrPepper
     moveq r2, #1
     bleq buy
+    itttt eq
     pusheq {r0}
-    ittt eq
     popeq {r1, r3}
     pusheq {r3}
     pusheq {r1}
