@@ -158,7 +158,7 @@ drinkSelection:
     moveq r2, #1
     bleq buy
     pusheq {r0}
-    ittt
+    ittt eq
     popeq {r1, r3}
     pusheq {r3}
     pusheq {r1}
