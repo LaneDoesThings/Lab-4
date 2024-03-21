@@ -112,8 +112,9 @@ input:
 If the user has entered more than 55 cents prompt them to buy a drink
 */
 drinkSelection:
-
+    pop {r0, r1}
     push {r2, lr}
+    push {r0 , r1}
 
     @Prompt the user to select a drink
     ldr r0, =strDrinkMessage
@@ -151,21 +152,10 @@ drinkSelection:
     moveq r7, r0
 
     cmp r4, #'P'
-    it eq
-    popeq {r1, r3}
-    itt eq
-    pusheq {r3}
-    pusheq {r1}
     ittt eq
     ldreq r1, =strDrPepper
     moveq r2, #1
     bleq buy
-    cmp r4, #'P'
-    itttt eq
-    pusheq {r0}
-    popeq {r1, r3}
-    pusheq {r3}
-    pusheq {r1}
 
     cmp r4, #'Z'
     ittt eq
@@ -173,8 +163,6 @@ drinkSelection:
     moveq r2, #1
     bleq buy
     cmp r4, #'Z'
-    it eq
-    pusheq {r0}
 
     cmp r4, #'X'
     itt eq
