@@ -186,8 +186,9 @@ admin:
     mov r2, r7
     bl printf
 
-    ldr r2, [sp], #16
-    ldr pc, [sp], #12
+    mov r2, sp, #16
+    mov lr, sp, #12
+    
 
 /*
 Returns the users money if they cancel the purchase
