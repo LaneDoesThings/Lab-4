@@ -188,6 +188,7 @@ drinkSelection:
     cmp r2, #0
     it eq
     bleq readError
+    cmp r2, #0
     it eq
     bleq drinkSelection
 
