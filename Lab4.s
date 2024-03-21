@@ -192,6 +192,7 @@ Buys the drink the user specified and return the change if any
 Also checks if the drink is out if stock
  */
 buy:
+
     pop {r3}
     push {r2, lr}
 
@@ -233,6 +234,40 @@ buy:
     return:
         pop {r2, pc}
 
+/*
+Makes the user confirm they want to buy that drink
+ */
+confirmPurchase:
+
+    push {r1, r3, lr}
+
+    ldr r0, =strConfirmBuy
+    bl printf
+
+    ldr r0, =charInputMode
+    ldr r1, =charInput
+    bl scanf
+    cmp r0, #0
+    it eq
+    bleq readError
+    ldr r1, =charInput
+    ldr r0, [r1]
+
+    pop {r1, r3, pc}
+
+/*
+Tells the user they completed the purchase and how much money they got back
+ */
+completePurchase:
+
+    push {r3, lr}
+
+    ldr r0, =strPurchaseComplete
+    mov r2, r5
+    bl printf
+    mov r5, #0
+
+    pop {r3, pc}
 
 /*
 Shows the amount of drinks left
