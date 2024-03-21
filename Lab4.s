@@ -95,6 +95,7 @@ input:
     itt eq
     moveq r2, #1
     bleq admin
+    push {r0, r1}
 /* 
     cmp r5, #55
     it ge
