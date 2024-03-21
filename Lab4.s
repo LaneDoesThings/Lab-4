@@ -21,6 +21,7 @@ gdb ./Lab4
 @stack: Amount of Coke Zero
 
 main:
+    @Tell the compiler to enter thumb mode
     adr r0, thumb + 1
     bx r0
     .thumb
@@ -61,7 +62,7 @@ input:
 
     movs r2, #0 @used for checking valid input
 
-    @The following check if the user imput a valid option and complete the task asked if valid
+    @The following checks if the user input a valid option and completes the task if the input is valid
     cmp r4, #'N'
     ittt eq
     moveq r1, #5
@@ -115,6 +116,8 @@ input:
 If the user has entered more than 55 cents prompt them to buy a drink
 */
 drinkSelection:
+
+    @Stack shenanigans to rearrange the order
     pop {r0, r1}
     push {r2, lr}
     push {r0, r1}
@@ -164,6 +167,8 @@ drinkPrompt:
     it eq
     pusheq {r0}
 
+    /*The coke zero input is really bad and uses a lot of
+      stack shenanigans to put things where I need them*/
     cmp r4, #'Z'
     ittt eq
     popeq {r0, r1}
@@ -198,7 +203,7 @@ drinkPrompt:
     it eq
     beq drinkPrompt
 
-
+    @Set r3 so the if then statment executes and give Dr. Pepper and Coke Zero back to r0, r1
     movs r3, #0
     pop {r0, r1}
     pop {r2, pc}
@@ -218,6 +223,7 @@ buy:
     beq outOfInventory
 
     @Make the user confirm the purchase
+confirmPrompt:
     bl confirmPurchase
     cmp r0, #'N'
     itt eq
@@ -227,7 +233,7 @@ buy:
     it eq
     beq purchase
 
-    bl confirmPurchase @The user didn't input a 'Y' or 'N' so reprompt them
+    b confirmPrompt @The user didn't input a 'Y' or 'N' so reprompt them
 
     outOfInventory:
         ldr r0, =strOutOfInventory @Tell the user the drink is out of stock
