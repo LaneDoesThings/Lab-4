@@ -296,6 +296,7 @@ Shows the amount of drinks left
  */
 admin:
 
+    @Get the Dr. Pepper and Coke Zero values from the stack
     pop {r0, r1}
     push {r2, lr}
 
@@ -373,10 +374,6 @@ readError:
 
     ldr r0, =strError
     bl printf
-
-    /*ldr r0, =strInputMode
-    ldr r1, =strInputError
-    bl scanf*/
 
     pop {r2, pc}
 
