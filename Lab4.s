@@ -99,8 +99,7 @@ input:
     pusheq {r0, r1}
 
     cmp r5, #55
-    itt ge
-    popge {r0, r1}
+    it ge
     blge drinkSelection
     cmp r3, #0
     it eq
@@ -116,6 +115,7 @@ input:
 If the user has entered more than 55 cents prompt them to buy a drink
 */
 drinkSelection:
+    pop {r0, r1}
     push {r2, lr}
     push {r0, r1}
 
@@ -253,7 +253,7 @@ Makes the user confirm they want to buy that drink
  */
 confirmPurchase:
 
-    push {r1, r3, lr}
+    push {lr}
 
     ldr r0, =strConfirmBuy
     bl printf
@@ -267,7 +267,7 @@ confirmPurchase:
     ldr r1, =charInput
     ldr r0, [r1]
 
-    pop {r1, r3, pc}
+    pop {pc}
 
 /*
 Tells the user they completed the purchase and how much money they got back
