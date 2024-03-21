@@ -136,6 +136,7 @@ drinkSelection:
     pusheq {r6}
     moveq r2, #1
     bleq buy
+    cmp r4, #'C'
     it eq
     moveq r6, r0
 
@@ -145,6 +146,7 @@ drinkSelection:
     pusheq {r7}
     moveq r2, #1
     bleq buy
+    cmp r4, #'S'
     it eq
     moveq r7, r0
 
@@ -157,6 +159,7 @@ drinkSelection:
     ldreq r1, =strDrPepper
     moveq r2, #1
     bleq buy
+    cmp r4, #'P'
     itttt eq
     pusheq {r0}
     popeq {r1, r3}
@@ -168,6 +171,7 @@ drinkSelection:
     ldreq r1, =strCokeZero
     moveq r2, #1
     bleq buy
+    cmp r4, #'Z'
     it eq
     pusheq {r0}
 
