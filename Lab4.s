@@ -301,7 +301,7 @@ admin:
     movs r2, r7
     bl printf
 
-    pop {r0, r1}
+    pop {r1, r0}
     pop {r2, pc}
     
 
