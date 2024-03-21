@@ -81,9 +81,11 @@ input:
     bleq addMoney
 
     cmp r4, #'B'
-    ittt eq
-    movseq r1, #100
-    movseq r2, #1
+    it eq
+    moveq r1, #100
+    it eq
+    moveq r2, #1
+    it eq
     bleq addMoney
 
     cmp r4, #'X'
