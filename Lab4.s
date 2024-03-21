@@ -186,12 +186,8 @@ admin:
     mov r2, r7
     bl printf
 
-
-    pop {r0, r1}
-    pop {r2, lr}
-    push {r0, r1}
-    push {r2, lr}
-    pop {r2, pc}
+    mov r2, sp, #12
+    mov pc, sp, #8
 
 /*
 Returns the users money if they cancel the purchase
