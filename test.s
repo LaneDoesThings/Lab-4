@@ -24,7 +24,8 @@ thumb:
     it eq
     subeq r4, r4, #10
 
-    movs r0, r4
+    ldr r0, =strOutput
+    movs r1, r4
     bl printf
 
     b thumb
@@ -35,3 +36,6 @@ charInputMode: .asciz " %c"
 
 .balign 4
 charInput: .ascii "a"
+
+.balign 4
+strOutput: .asciz "%d"
