@@ -8,7 +8,7 @@ main:
 
 thumb:
     movs r4, 50 @The initial value
-
+loop:
     ldr r0, =charInputMode
     ldr r1, =charInput
     bl scanf
@@ -28,7 +28,7 @@ thumb:
     movs r1, r4
     bl printf
 
-    b thumb
+    b loop
 
 .data
 .balign 4
@@ -38,4 +38,4 @@ charInputMode: .asciz " %c"
 charInput: .ascii "a"
 
 .balign 4
-strOutput: .asciz "%d"
+strOutput: .asciz "%d\n"
