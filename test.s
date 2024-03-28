@@ -7,7 +7,7 @@ main:
     .syntax unified
 
 thumb:
-    mov r4, 50 @The initial value
+    movs r4, 50 @The initial value
 
     ldr r0, =charInputMode
     ldr r1, =charInput
@@ -24,7 +24,7 @@ thumb:
     it eq
     subeq r4, r4, #10
 
-    mov r0, r4
+    movs r0, r4
     bl printf
 
     b thumb
