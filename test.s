@@ -28,3 +28,10 @@ thumb:
     bl printf
 
     b thumb
+
+.data
+.balign 4
+charInputMode: .asciz " %c"
+
+.balign 4
+charInput: .ascii "a"
